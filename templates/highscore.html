@@ -1,0 +1,38 @@
+<html>
+<head>
+    <center>
+        <h1> Highscores </h1><br>
+        <h1> This tournament</h1><br>
+    </center>
+</head><br><br>
+
+<body>
+    <center>
+        <table>
+        <tr bgcolor=green>
+            <th> NAME </th>
+            <th> TOTAL </th>
+            <th> Edit </th>
+        </tr>
+{% for each record in records %}           #get all scores and names sent as post.
+        <tr>
+            <td> {{record[1]}}</td>         
+            <td> {{record[2]}}</td>
+            <td> <a href="edit link here"> Edit </a></td>
+
+
+        </tr>
+        </table>
+    </center>
+</body><br><br>
+<footer>
+    <center>
+    <tr><a href="home.html"> Home </a></tr>
+    <tr><a href="newplayer.html"> New Player </a></tr>
+    <tr><a href="addplayer.html"> Add Player to tournament </a></tr>
+    <tr><a href="highscore.html"> Highscores </a></tr>
+    <tr><a href="place.html"> placeholder </a></tr>
+    
+    </center>   
+</footer>
+</html>
