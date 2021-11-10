@@ -1,29 +1,37 @@
 <html>
     <center>
-    <h1> Update score page </h1>
+    <h1> Update score page </h1><br><br>
+
+    {% for player in player %} 
+    <h1>{{ player[0] }}</h1><br>
+    {% endfor %}
     </center>
-    <form><center>
+    <form action="/editscoresub/{{record[0]}}" method="POST"><center>
+    <br>
     Score1:
-    <select name="Game1">
-    <option hidden="0" value="0"> Null </option>    #get value from SQL fpr edit.
+    <select name="score1">
+    <option hidden="0" value="0"> {{record[1]}} </option>   
     <option value="1"> Loss </option>
     <option value="2"> Draw </option>
     <option value="3"> Win </option>
-    </select><br>
+    </select><br><br>
     Score2:
-    <select name="Game2">
+    <select name="score2">
+        <option hidden="0" value="0"> {{record[2]}} </option>   
     <option value="1"> Loss </option>
     <option value="2"> Draw </option>
     <option value="3"> Win </option>
-    </select><br>
+    </select><br><br>
     Score3:
-    <select name="Game3">
+    <select name="score3">
+        <option hidden="0" value="0"> {{record[3]}} </option>   
     <option value="1"> Loss </option>
     <option value="2"> Draw </option>
     <option value="3"> Win </option>
-    </select><br>
+    </select><br><br>
     Score4:
-    <select name="Game4">
+    <select name="score4">
+        <option hidden="0" value="0"> {{record[4]}} </option>   
     <option value="1"> Loss </option>
     <option value="2"> Draw </option>
     <option value="3"> Win </option>
@@ -34,11 +42,12 @@
 </center> </form>
 <footer>
     <center>
-    <tr><a href="home.html"> Home </a></tr>
-    <tr><a href="newplayer.html"> New Player </a></tr>
-    <tr><a href="addplayer.html"> Add Player to tournament </a></tr>
-    <tr><a href="highscore.html"> Highscores </a></tr>
-    <tr><a href="place.html"> placeholder </a></tr>
+        <center><br><br>
+            <tr><a href='/'> Home </a></tr><hr>
+            <tr><a href="/newplayerdetails"> New Player </a></tr><hr>
+            <tr><a href="/addplayer"> Add Player to tournament </a></tr><hr>
+            <tr><a href="/highscore"> Highscores </a></tr><hr>
+            <tr><a href="place.html"> placeholder </a></tr><hr>
     
     </center>   
 </footer>
