@@ -1,32 +1,34 @@
 <html>
 <head>
     <center>
-        <h1> New Player </h1><br>
         <h1> Enter details below:</h1><br>
     </center>
 </head><br><br>
 
 <body>
     <center>
-        <form action="/submitplayer" method="POST">
+        {% for record in records %}
+        <form action="/submiteditplayer" method="POST">
+            <input type="HIDDEN" name="pid" value={{record[0]}}>
             <tr>
                 <td> Name: </td>
-                <td> <input type="TEXT" name="name"> </td>
+                <td> <input type="TEXT" name="name" value="{{record[1]}}"> </td>
         
             </tr>
             <tr>
                 <td> Surname: </td>
-                <td> <input type="TEXT" name="surname"> </td>
+                <td> <input type="TEXT" name="surname" value="{{record[2]}}"> </td>
         
             </tr><br>
             <tr>
                 <td> email: </td>
-                <td> <input type="TEXT" name="email"> </td>
+                <td> <input type="TEXT" name="email" value="{{record[3]}}"> </td>
         
             </tr>
         
         Age:
         <select name="age">
+            <option hidden="0" value={{record[4]}}> {{record[4]}} </option>
             <option value=18> 18 </option>
             <option value=19> 19 </option>
             <option value=20> 20 </option>
@@ -58,6 +60,10 @@
         <input type="submit" methods="POST">
         
         </form>
+       
+        <a href="/deleteplayer/{{record[0]}}"> DELETE PLAYER</a>
+
+        {% endfor %}
     </center>
 </body><br><br>
 <footer>

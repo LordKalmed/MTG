@@ -1,2 +1,5 @@
-
-#all required software
+flask
+flask_testing
+pymysql
+pytest
+pytest-cov

@@ -1,10 +1,20 @@
 from flask import Flask, redirect, render_template, request
 import mysql.connector
+from werkzeug.datastructures import CombinedMultiDict
+from os import getenv, environ
 
-db=mysql.connector.connect (    host="localhost" ,  
-                                user="root",
-                                password="root",
-                                database="tournament")  #exposed SQL details security issue.
+
+dbhost=getenv("sqlhost")
+dbuser=getenv("sqluser")
+dbpass=getenv("sqlpass")
+dbdata=getenv("sqldata")
+
+#db=mysql.connector.connect (uri)
+
+db=mysql.connector.connect (    host=str(dbhost) ,  
+                                user=str(dbuser), 
+                                password=str(dbpass), 
+                                database=str(dbdata))  #enviroment variables used to secure the connection.
 
 app=Flask(__name__, template_folder='../templates')
 #get db connection to mysql with SQL alchemy if possible for security.
@@ -47,7 +57,6 @@ def addplayer():
     data=cursor.fetchall()
     return render_template('addplayer.html', records=data)
 
-
 @app.route("/submitaddplayer/<pid>")                                        #function to add a player to the score table with 0 score.
 def subaddplayer(pid):
     cursor.execute("insert into score value ({0}, {1}, {2}, {3}, {4})".format(pid, 0,0,0,0))      #may need if/else for double entry
@@ -58,30 +67,59 @@ def subaddplayer(pid):
 def newplayerdetails():
     return render_template('newplayer.html')  
 
-@app.route('/editscoresub/<pid>', methods=["POST", "GET"])
-def editscoresub(pid):
+@app.route('/editscoresub', methods=["POST", "GET"])                        #fuction to update scores for specific players.
+def editscoresub():
     pid=request.form["pid"]
     score1=request.form["score1"]
     score2=request.form["score2"]
     score3=request.form["score3"]
     score4=request.form["score4"]
-    sqlquery="update score set score1 = {1}, score2 = {2}, score3 = {3}, score4 = {4} where pid={0}".format(pid, score1, score2, score3, score4)
+    sqlquery="update score set score1 = {1}, score2 = {2}, score3 = {3}, score4 = {4} where pid = {0}".format(pid, score1, score2, score3, score4)
     cursor.execute(sqlquery)
     db.commit
     return redirect('/highscore')
 
-@app.route('/updatescore/<pid>')
+@app.route('/updatescore/<pid>')                                            #function gets the name of the player and scores from both tables, then allows us to update the scores
 def editscore(pid):
     cursor.execute("select * from score where pid={0}".format(pid))
     data=cursor.fetchall()
     cursor.execute("select name from player where pid={0}".format(pid))
     name=cursor.fetchall()
-    return render_template('updatescore.html', record=data, player=name)
+    return render_template('updatescore.html', records=data, player=name)
 
+@app.route('/editplayer')                                                   #functions fine to pull all data and render edit player.
+def editplayer():
+    cursor.execute("select * from player")
+    data=cursor.fetchall()
+    return render_template('editplayer.html', records=data)
 
+@app.route('/editplayerdetails/<pid>')                                      #correctly displays current data for player.
+def editplayerdetails(pid):
+    cursor.execute("select * from player where pid={0}".format(pid))
+    data=cursor.fetchall()
+    return render_template("editplayerdetails.html", records=data)
 
+@app.route('/submiteditplayer', methods=["POST"])                           #function to submit new details to player table
+def submiteditplayer():
+    pid=request.form["pid"]
+    name=request.form["name"]
+    surname=request.form["surname"]
+    email=request.form["email"]
+    age=request.form["age"]
+    cursor.execute("update player set name = '{1}', surname = '{2}', email = '{3}', age={4} where pid={0}".format(pid,name,surname,email,age))
+    db.commit
+    return redirect("/")
 
+@app.route('/deleteplayer/<pid>')                                           #function to delet player inside the edit form
+def deleteplayer(pid):
+    cursor.execute("delete from player where pid={0}".format(pid))
+    db.commit
+    return redirect("/")
 
-
+@app.route('/resettournament')                                              #function to drop all scoires from score, reset the tournament
+def reset():
+    cursor.execute("delete from score")
+    db.commit
+    return redirect("/")
 
 app.run(debug=True)

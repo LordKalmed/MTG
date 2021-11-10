@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <center>
+            <h1> Edit a players details </h1><br>
+            <h1> select player to edit below</h1><br>
+        </center>
+    </head><br><br>
+    
+    <body>
+        <center>
+            <table>
+                <tr bgcolor=green>
+                    <th> NAME </th>
+                    <th> SURNAME </th>
+                    <th> Email </th>
+                    <th> Age </th>
+                    <th> Edit/Delete </th>
+                </tr>
+        {% for record in records %}
+                <tr>
+                    <td> {{record[1]}}</td>         
+                    <td> {{record[2]}}</td>
+                    <td> {{record[3]}}</td>
+                    <td> {{record[4]}}</td>
+                    <td> <a href="/editplayerdetails/{{record[0]}}"> EDIT </a></td>
+    </tr>
+    {% endfor %}
+    </table>
+        </center>
+        <footer>
+            <center><br><br>
+                <tr><a href='/'> Home </a></tr><hr>
+                <tr><a href="/newplayerdetails"> New Player </a></tr><hr>
+                <tr><a href="/addplayer"> Add Player to tournament </a></tr><hr>
+                <tr><a href="/highscore"> Highscores </a></tr><hr>
+                <tr><a href="/editplayer"> Edit Player </a></tr><hr>
+            
+            </center>   
+        </footer>
+        
+
+</html>
