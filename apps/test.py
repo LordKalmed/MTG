@@ -1,24 +1,30 @@
-from apps import route
-from flask import pytest
+from mysql import connector
+from flask import Flask, redirect, render_template, request
+import route
+import mysql.connector
+import pytest
 
-def test_homepage():
-    assert
 
-def test_newplayer():
-    assert
+db=mysql.connector.connect (    host="localhost" ,  
+                                user="root", 
+                                password="rootroot", 
+                                database="tournament_test")
 
-def test_editplayer():
-    assert
+cursor=db.cursor() 
 
-def test_highscore():
-    assert
+cursor.execute( "create table player_test (pid int, name char(25), surname char(25), email char(50), age int)")
+db.commit
+cursor.execute( "create table score (pid int, score1 int, score2 int, score3 int, score4 int)")
+db.commit
 
-def test_addplayer():
-    assert
+def test_homepage(self):
+    self.app.get('/')
+    self.assert_template_used('home.html')
 
-def test_editscore():
-    assert
+def test_newplayer(self):
+        response = self.client.post("/submitplayer"),
+        data = dict(pid='1', name = "test_name", surname = "test_surname", email = "test@email", age = 21),
+        follow_redirects = True)
+        self.assertIn(b'test_name', response.data)
 
-def test_dbcreate():
-    assert
 
