@@ -1,4 +1,5 @@
-from apps import db, route
+from apps import route
+from flask import pytest
 
 def test_homepage():
     assert

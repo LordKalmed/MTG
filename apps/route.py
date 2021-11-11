@@ -8,13 +8,19 @@ dbhost=getenv("sqlhost")
 dbuser=getenv("sqluser")
 dbpass=getenv("sqlpass")
 dbdata=getenv("sqldata")
+db_connect=getenv("sqlconnect")
+#db=mysql.connector.connect (db_connect)
 
-#db=mysql.connector.connect (uri)
+#db=mysql.connector.connect (    host=dbhost ,  
+#                                user=dbuser, 
+#                                password=dbpass, 
+#                                database=dbdata)  #enviroment variables used to secure the connection.
 
-db=mysql.connector.connect (    host=str(dbhost) ,  
-                                user=str(dbuser), 
-                                password=str(dbpass), 
-                                database=str(dbdata))  #enviroment variables used to secure the connection.
+db=mysql.connector.connect (    host="localhost" ,  
+                                user="root", 
+                                password="rootroot", 
+                                database="tournament") 
+
 
 app=Flask(__name__, template_folder='../templates')
 #get db connection to mysql with SQL alchemy if possible for security.
