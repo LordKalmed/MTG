@@ -1,4 +1,5 @@
 from os import getenv
+import mysql.connector
 
 
 
@@ -8,15 +9,18 @@ dbpass=getenv("sqlpass1")
 dbdata=getenv("sqldata")
 
 
-dbconn=getenv("sqlconnect")
-
-"select score.pid, player.name, sum(score.score1+score.score2+score.score3+score.score4) from score inner join player score.pid=player.pid group by pid order by pid desc
-
-select score.pid, player.name, sum(score1+ score2+ score3+score4) from score, player inner join player on score.pid = player.pid
-
-select score.pid, player.name , sum(score1+ score2 + score3 + score4) as total from score, player where score.pid = player.pid;
+db=mysql.connector.connect (    host="34.142.92.109" ,  
+                                user="root", 
+                                password="root", 
+                                database="tournament") 
 
 print(dbhost)
 print(dbuser)
 print(dbpass)
 print(dbdata)
+
+cursor=db.cursor() 
+
+cursor.execute("select * from score where pid=105")
+test=cursor.fetchall()
+print(test)

@@ -66,9 +66,14 @@ def addplayer():
 
 @app.route("/submitaddplayer/<pid>")                                        #function to add a player to the score table with 0 score.
 def subaddplayer(pid):
-    cursor.execute("insert into score value ({0}, {1}, {2}, {3}, {4})".format(pid, 0,0,0,0))      #may need if/else for double entry
-    db.commit()
-    return redirect("/addplayer")
+    cursor.execute("select * from score where pid={0}".format(pid))
+    ontable=cursor.fetchall()
+    if ontable=="[]":
+        cursor.execute("insert into score value ({0}, {1}, {2}, {3}, {4})".format(pid, 0,0,0,0))      #may need if/else for double entry
+        db.commit()
+        return redirect("/addplayer")
+    else:
+        return redirect("/addplayer")
 
 @app.route("/newplayerdetails")                                             #functional page that send player details to /submitplayer
 def newplayerdetails():
