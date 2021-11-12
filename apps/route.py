@@ -16,9 +16,9 @@ db_connect=getenv("sqlconnect")
 #                                password=dbpass, 
 #                                database=dbdata)  #enviroment variables used to secure the connection.
 
-db=mysql.connector.connect (    host="localhost" ,  
+db=mysql.connector.connect (    host="34.142.92.109" ,  
                                 user="root", 
-                                password="rootroot", 
+                                password="root", 
                                 database="tournament") 
 
 
@@ -53,7 +53,8 @@ def newplayer():
 
 @app.route("/highscore", methods=['GET', 'POST'])                           #got the correct sql query for score calc. Desc order for easy winner
 def highscore():
-    cursor.execute("select t.pid,u.name, sum(score1+score2+score3+score4) from score t inner join player u on t.pid = u.pid  group by pid order by pid desc")                                                 #get sql quesry to display highest decesding
+    cursor.execute("SET SESSION sql_mode=''")
+    cursor.execute("select t.pid, u.name, sum(score1+score2+score3+score4) as Total from score t inner join player u on t.pid = u.pid group by pid order by Total desc")                                                 #get sql quesry to display highest decesding
     data=cursor.fetchall()
     return render_template('highscore.html',records=data)                                         #sending all the sql query results to page
 

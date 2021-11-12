@@ -24,7 +24,7 @@ def test_homepage(self):
 def test_newplayer(self):
         response = self.client.post("/submitplayer"),
         data = dict(pid='1', name = "test_name", surname = "test_surname", email = "test@email", age = 21),
-        follow_redirects = True)
+        follow_redirects = True
         self.assertIn(b'test_name', response.data)
 
 
