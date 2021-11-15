@@ -11,15 +11,15 @@ dbdata=getenv("sqldata")
 db_connect=getenv("sqlconnect")
 #db=mysql.connector.connect (db_connect)
 
-#db=mysql.connector.connect (    host=dbhost ,  
-#                                user=dbuser, 
-#                                password=dbpass, 
-#                                database=dbdata)  #enviroment variables used to secure the connection.
+db=mysql.connector.connect (    host=dbhost ,  
+                                user=dbuser, 
+                                password=dbpass, 
+                                database=dbdata)  #enviroment variables used to secure the connection.
 
-db=mysql.connector.connect (    host="34.142.92.109" ,  
-                                user="root", 
-                                password="root", 
-                                database="tournament") 
+#db=mysql.connector.connect (    host="34.142.92.109" ,  
+#                                user="root", 
+#                                password="root", 
+#                                database="tournament") 
 
 
 app=Flask(__name__, template_folder='../templates')
