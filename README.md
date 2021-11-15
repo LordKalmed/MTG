@@ -57,6 +57,14 @@ Below please see the database structure.
 
 ![ERD1](images/tables.png)
 
+3. tools used
+IDE= Visual studio code
+cloudhost= Google cloud
+version control= Github
+CI server= Jenkins
+Code= Python + html
+Modules = Flask, Mysql.connector, pytest, pytest-cov
+
 
 ## 5-User Flow
 The product is intended to be run in the following manner:
