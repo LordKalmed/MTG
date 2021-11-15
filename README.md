@@ -90,3 +90,5 @@ there have been no succesful tests of the app. Thus we cannot know it is deploye
 Next will be to create a full tests.py and deploy.sh. This will allow for easy deployment of new VM's with the only configuration required being to add the IP address of the VM to the sql allowed connection.
 
 After that we will look to save past tournameent ttables instead of cleariing the data from them. This will allow us to build up better records from past tournaments.
+
+Use of venv with the python app will allow better deployment.
