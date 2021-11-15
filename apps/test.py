@@ -40,6 +40,17 @@ def test_newplayer(self):
     follow_redirects = True
     self.assertIn(b'test_name', response.data)
 
-def test_highscore():                                       #struggeling with test code. will try again next time.
-    respo
+#def test_highscore():                                       #struggeling with test code. will try again next time.
+
+
+#def test_addplayer():                          Need to test for return of url + get from database
+
+#def test_subaddplayer():                       test submit detials to SQL
+
+#def test_newplayerdetails():                      Test url for new player details (simple)
+
+
+
+
+    
 
