@@ -51,7 +51,12 @@ After 4 games the max score possible will be 12.
 
 Above we can see the different components making up this app. 
 Webpages are highlighted with green
-Database yables are highlighted with orange.
+Database tables are highlighted with orange.
+
+Below please see the database structure.
+
+![ERD1](images/tables.png)
+
 
 ## 5-User Flow
 The product is intended to be run in the following manner:
@@ -65,5 +70,23 @@ The product is intended to be run in the following manner:
 4. Extended- After all is done the admin should be able to create a new tournament. This will delete all the data on scores table and allow it to start again.
 
 
+## 6-Security and safety
+
+Although this project will not contain vital information security must always be considered.
+
+1. SQL or VM go down
+in the event that either the vm or SQl are down the service will stop functioning. GCP mitigates alot of this risk however will need to look at redundent vm. SQL should suffice for now.
+
+2. Exposed SQL details
+The sql details are no longer in the source code, instead they are stored as enviroment variables.
+
+3. SQL injection
+although we have no security against sql injections, i have set the SQL server to only accept requests from the VM IP address which is reserved. This should eliminate most of the risk of SQL inhection.
+
+4. Lack of tests
+there have been no succesful tests of the app. Thus we cannot know it is deployed correctly each time. This will need to be fixed.
+
 ## 7-Potential extras
-xxxxxxxx
+Next will be to create a full tests.py and deploy.sh. This will allow for easy deployment of new VM's with the only configuration required being to add the IP address of the VM to the sql allowed connection.
+
+After that we will look to save past tournameent ttables instead of cleariing the data from them. This will allow us to build up better records from past tournaments.

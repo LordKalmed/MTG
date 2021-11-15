@@ -29,10 +29,7 @@ cursor.execute( "create table score (pid int, score1 int, score2 int, score3 int
 db.commit
 
 def test_homepage():
-    "GET request to url returns a 200"
-    url = 'https://monitorial.com/'
-    resp = requests.get(url)
-    assert resp.status_code == 200
+    assert template_used == "home.html"
 
 def test_newplayer(self):
     response = self.client.post("/submitplayer"),
