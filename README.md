@@ -41,9 +41,12 @@ After 4 games the max score possible will be 12.
 
 2. Modules that will be used are:
     1. flask
-    2. pymysql
-    3. wtforms
-    4. something
+    2. flask-testing
+    3. pymysql
+    4. mysql-connector-python
+    5. pytest
+    6. pytest-cov
+
 
 3. Entity Relationship
 
@@ -94,6 +97,7 @@ although we have no security against sql injections, i have set the SQL server t
 4. Lack of tests
 there have been no succesful tests of the app. Thus we cannot know it is deployed correctly each time. This will need to be fixed.
 Below please see a risk table
+
 ![ERD1](images/risk.png)
 
 ## 7-Potential extras
