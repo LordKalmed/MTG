@@ -93,6 +93,8 @@ although we have no security against sql injections, i have set the SQL server t
 
 4. Lack of tests
 there have been no succesful tests of the app. Thus we cannot know it is deployed correctly each time. This will need to be fixed.
+Below please see a risk table
+![ERD1](images/risk.png)
 
 ## 7-Potential extras
 Next will be to create a full tests.py and deploy.sh. This will allow for easy deployment of new VM's with the only configuration required being to add the IP address of the VM to the sql allowed connection.
