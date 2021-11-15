@@ -35,9 +35,11 @@ def test_homepage():
     assert resp.status_code == 200
 
 def test_newplayer(self):
-        response = self.client.post("/submitplayer"),
-        data = dict(pid='1', name = "test_name", surname = "test_surname", email = "test@email", age = 21),
-        follow_redirects = True
-        self.assertIn(b'test_name', response.data)
+    response = self.client.post("/submitplayer"),
+    data = dict(pid='1', name = "test_name", surname = "test_surname", email = "test@email", age = 21),
+    follow_redirects = True
+    self.assertIn(b'test_name', response.data)
 
+def test_highscore():                                       #struggeling with test code. will try again next time.
+    respo
 
