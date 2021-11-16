@@ -8,31 +8,17 @@ dbhost=getenv("sqlhost")
 dbuser=getenv("sqluser")
 dbpass=getenv("sqlpass")
 dbdata=getenv("sqldata")
-db_connect=getenv("sqlconnect")
 #db=mysql.connector.connect (db_connect)
 
-db=mysql.connector.connect (    host=dbhost ,  
-                                user=dbuser, 
-                                password=dbpass, 
-                                database=dbdata)  #enviroment variables used to secure the connection.
-
-#db=mysql.connector.connect (    host="34.142.92.109" ,  
-#                                user="root", 
-#                                password="root", 
-#                                database="tournament") 
+db=mysql.connector.connect (    host="localhost" ,  
+                                user="root", 
+                                password="root", 
+                                database="tournament") 
 
 
-app=Flask(__name__, template_folder='../templates')
-#get db connection to mysql with SQL alchemy if possible for security.
+app=Flask(__name__,)                    #get db connection to mysql with SQL alchemy if possible for security.
 cursor=db.cursor()
 
-#class forms instead of html!
-#class AddEmp(FlaskForm):
-    #salary = IntegerField("Salary")
-    #marks = IntegerField("Marks")
-    #subject = SelectField("Subject", choices=[('python', 'Python'), ('java', 'Java'), ('php', 'PHP'), ('sql', 'SQL')])
-    #department = SelectField('Department', choices=[('IT', 'Information technology'), ('HR', 'Human Resources'), ('sales', 'Sales'), ('training', 'Training')])
-    #submit = SubmitField('Add Employee')
 
 @app.route("/")                                                             #Mostly just hyper links and info
 def homepage():
@@ -134,4 +120,4 @@ def reset():
     db.commit
     return redirect("/")
 
-app.run(debug=True, host="0.0.0.0")
+app.run(debug=True)
